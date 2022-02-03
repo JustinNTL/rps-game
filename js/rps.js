@@ -18,3 +18,10 @@ while (playerSelection.toLowerCase() !== "rock" && playerSelection.toLowerCase()
     playerSelection = prompt("Rock, Paper, or Scissors? Choose your fate.");
   };
 
+function computerPlay() {
+  const computerOptions = ['Rock', 'Paper', 'Scissors'];
+  const random = Math.floor(Math.random() * computerOptions.length);
+  console.log(computerOptions[random]);
+};
+
+computerPlay();
