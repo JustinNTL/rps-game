@@ -11,17 +11,45 @@ compare the answers of the user input and the computer. and output the winner of
 
 */
 
-let playerSelection = prompt("Rock, Paper, or Scissors? Choose your fate."); 
-while (playerSelection.toLowerCase() !== "rock" && playerSelection.toLowerCase() !=="paper" && playerSelection.toLowerCase() !=="scissors")
-  {
-    alert(playerSelection + ' is not a valid option.');
-    playerSelection = prompt("Rock, Paper, or Scissors? Choose your fate.");
-  };
+// let playerSelection = prompt("Rock, Paper, or Scissors? Choose your fate."); 
+// while (playerSelection.toLowerCase() !== "rock" && playerSelection.toLowerCase() !=="paper" && playerSelection.toLowerCase() !=="scissors")
+//   {
+//     alert(playerSelection + ' is not a valid option.');
+//     playerSelection = prompt("Rock, Paper, or Scissors? Choose your fate.");
+//   };
 
 function computerPlay() {
-  const computerOptions = ['Rock', 'Paper', 'Scissors'];
+  const computerOptions = ['rock', 'paper', 'scissors'];
   const random = Math.floor(Math.random() * computerOptions.length);
-  console.log(computerOptions[random]);
+  return computerOptions[random];
 };
 
-computerPlay();
+// const computerSelection = computerPlay();
+
+// function rps(playerSelection, computerSelection) {
+//   if (playerSelection === computerSelection) {
+//     return 'It\'s a Draw!';
+//   } else if (playerSelection === 'rock' && computerSelection === 'paper') {
+//     return 'You Lose! Paper beats Rock!';
+//   } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+//     return 'You Win! Paper beats Rock!';
+//   }
+// };
+ 
+function playRound(playerSelection, computerSelection) {
+  if (playerSelection === computerSelection) {
+        return 'It\'s a Draw!';
+      } else if (playerSelection === 'rock' && computerSelection === 'paper') {
+        return 'You Lose! Paper beats Rock!';
+      } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+        return 'You Win! Paper beats Rock!';
+      };
+};
+
+const playerSelection = "rock";
+const computerSelection = computerPlay();
+console.log(playRound(playerSelection, computerSelection));
+
+// looks like i forgot to add the semi colons to the else if statements which is why it 
+// always returned its a draw lol...find out if you need to add semi colon to end of 
+// if statements in the function..you would right? function is just additive..logically
