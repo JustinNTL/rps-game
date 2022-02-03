@@ -22,7 +22,7 @@ function computerPlay() {
   const computerOptions = ['rock', 'paper', 'scissors'];
   const random = Math.floor(Math.random() * computerOptions.length);
   return computerOptions[random];
-};
+}
 
 // const computerSelection = computerPlay();
 
@@ -39,17 +39,20 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
         return 'It\'s a Draw!';
-      } else if (playerSelection === 'rock' && computerSelection === 'paper') {
-        return 'You Lose! Paper beats Rock!';
-      } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        return 'You Win! Paper beats Rock!';
-      };
-};
+      } else if ((playerSelection === 'rock' && computerSelection === 'paper') || 
+        (playerSelection === 'paper' && computerSelection === 'scissors') || 
+        (playerSelection === 'scissors' && computerSelection === 'rock')) {
+        return 'You Lose! ' + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) +
+        ' beats ' + playerSelection.charAt(0) + playerSelection.slice(1) + '!';
+      } else if ((playerSelection === 'rock' && computerSelection === 'scissors') || 
+        (playerSelection === 'paper' && computerSelection === 'rock') || 
+        (playerSelection === 'scissors' && computerSelection === 'paper')) {
+        return 'You Win! ' + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) +
+        ' beats ' + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
+      } 
+}
 
 const playerSelection = "rock";
 const computerSelection = computerPlay();
 console.log(playRound(playerSelection, computerSelection));
-
-// looks like i forgot to add the semi colons to the else if statements which is why it 
-// always returned its a draw lol...find out if you need to add semi colon to end of 
-// if statements in the function..you would right? function is just additive..logically
+console.log(playerSelection, computerSelection);
