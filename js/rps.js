@@ -29,25 +29,25 @@ function game() {
       return computerOptions[computerRandom];
     }
 
+    const computerSelection = computerPlay();
+
     function playRound(playerSelection, computerSelection) {
       if (playerSelection === computerSelection) {
-            return 'It\'s a Draw!';
-          } else if ((playerSelection === 'rock' && computerSelection === 'paper') || 
+        return 'It\'s a Draw!';
+      } else if ((playerSelection === 'rock' && computerSelection === 'paper') || 
             (playerSelection === 'paper' && computerSelection === 'scissors') || 
             (playerSelection === 'scissors' && computerSelection === 'rock')) {
             computerScore++;
             return 'You Lose! ' + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) +
             ' beats ' + playerSelection.charAt(0) + playerSelection.slice(1) + '!';
-          } else if ((playerSelection === 'rock' && computerSelection === 'scissors') || 
+      } else if ((playerSelection === 'rock' && computerSelection === 'scissors') || 
             (playerSelection === 'paper' && computerSelection === 'rock') || 
             (playerSelection === 'scissors' && computerSelection === 'paper')) {
             userScore++;
             return 'You Win! ' + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) +
             ' beats ' + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
-          } 
+      } 
     }
-
-    const computerSelection = computerPlay();
 
     console.log(playRound(playerSelection, computerSelection));
     console.log(playerSelection, computerSelection);
