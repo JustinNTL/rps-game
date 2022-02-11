@@ -12,8 +12,16 @@ Given restraints, there will be chances of no final winner/loser
 
 Edit: Use buttons instead of asking for a string */
 
-let userScore = 0;
-let computerScore = 0;
+function game() {
+  let userScore = 0;
+  let computerScore = 0;
+  let movesEnd = 0;
+
+  const playGame = () => {
+    const rock = document.querySelector('.rock');
+    const paper = document.querySelector('.paper');
+    const scissors = document.querySelector('.scissors');
+    const playerOptions = [rock, paper, scissors];
 
     function computerPlay() {
       const computerOptions = ['rock', 'paper', 'scissors'];
@@ -21,7 +29,16 @@ let computerScore = 0;
       return computerOptions[computerRandom];
     }
 
-    const computerSelection = computerPlay();
+    playerOptions.forEach(option => {
+      option.addEventListener('click', function(e){
+        const computerSelection = computerPlay();
+        playerSelection = this.innerText.toLowerCase();
+        playRound();
+        if (computerScore === 5 || userScore === 5) {
+          return 'its over';
+        }
+      })
+    })
 
     function playRound(playerSelection, computerSelection) {
       if (playerSelection === computerSelection) {
@@ -40,16 +57,19 @@ let computerScore = 0;
             ' beats ' + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
       } 
     }
-  
-    console.log(playRound(playerSelection, computerSelection));
-    console.log(playerSelection, computerSelection);
-    console.log(userScore, computerScore);
-  
+      
+    // console.log(playRound(playerSelection, computerSelection));
+    // console.log(playerSelection, computerSelection);
+    // console.log(userScore, computerScore);
 
-  if (userScore > computerScore) {
-    return `The final score out of 5 rounds is User: ${userScore} - Computer: ${computerScore}. You Win!`;
-  } else if (userScore < computerScore) {
-    return `The final score out of 5 rounds is User: ${userScore} - Computer: ${computerScore}. You Lose!`;
-  } else if (userScore === computerScore) {
-    return `The final score out of 5 rounds is User: ${userScore} - Computer: ${computerScore}. It's a Draw!`;
+    if (userScore > computerScore) {
+      return `The final score out of 5 rounds is User: ${userScore} - Computer: ${computerScore}. You Win!`;
+    } else if (userScore < computerScore) {
+      return `The final score out of 5 rounds is User: ${userScore} - Computer: ${computerScore}. You Lose!`;
+    } else if (userScore === computerScore) {
+      return `The final score out of 5 rounds is User: ${userScore} - Computer: ${computerScore}. It's a Draw!`;
+    }
   }
+  playGame();
+}
+game();
