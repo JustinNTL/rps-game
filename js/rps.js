@@ -22,6 +22,8 @@ function game() {
     const paper = document.querySelector('.paper');
     const scissors = document.querySelector('.scissors');
     const playerOptions = [rock, paper, scissors];
+    const score = document.querySelector('.score');
+    const result = document.querySelector('.results');
 
     function computerPlay() {
       const computerOptions = ['rock', 'paper', 'scissors'];
@@ -30,44 +32,49 @@ function game() {
     }
 
     playerOptions.forEach(option => {
-      option.addEventListener('click', function(e){
+      option.addEventListener('click', function(e) {
         const computerSelection = computerPlay();
         playerSelection = this.innerText.toLowerCase();
-        playRound();
-        if (computerScore === 5 || userScore === 5) {
-          return 'its over';
-        }
+        playRound(playerSelection, computerSelection);
+        displayScore();
+        fivePoints();
+        console.log(playerSelection, computerSelection);
+        console.log(userScore, computerScore);
       })
     })
 
     function playRound(playerSelection, computerSelection) {
       if (playerSelection === computerSelection) {
-        return 'It\'s a Draw!';
+        return result.innerText = 'It\'s a Draw!';
       } else if ((playerSelection === 'rock' && computerSelection === 'paper') || 
             (playerSelection === 'paper' && computerSelection === 'scissors') || 
             (playerSelection === 'scissors' && computerSelection === 'rock')) {
             computerScore++;
-            return 'You Lose! ' + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) +
+            return result.innerText = 'You Lose! ' + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) +
             ' beats ' + playerSelection.charAt(0) + playerSelection.slice(1) + '!';
       } else if ((playerSelection === 'rock' && computerSelection === 'scissors') || 
             (playerSelection === 'paper' && computerSelection === 'rock') || 
             (playerSelection === 'scissors' && computerSelection === 'paper')) {
             userScore++;
-            return 'You Win! ' + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) +
+            return result.innerText = 'You Win! ' + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) +
             ' beats ' + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1);
       } 
     }
-      
-    // console.log(playRound(playerSelection, computerSelection));
-    // console.log(playerSelection, computerSelection);
-    // console.log(userScore, computerScore);
 
-    if (userScore > computerScore) {
-      return `The final score out of 5 rounds is User: ${userScore} - Computer: ${computerScore}. You Win!`;
-    } else if (userScore < computerScore) {
-      return `The final score out of 5 rounds is User: ${userScore} - Computer: ${computerScore}. You Lose!`;
-    } else if (userScore === computerScore) {
-      return `The final score out of 5 rounds is User: ${userScore} - Computer: ${computerScore}. It's a Draw!`;
+    function displayScore() {
+      return score.innerText = `Current Score --- User: ${userScore} - Computer: ${computerScore}`;
+    }
+
+    function fivePoints() {
+      if (userScore === 5) {
+        result.innerText = `The first to score 5 points is User: ${userScore} - Computer: ${computerScore}. You Win!`;
+        userScore = 0;
+        computerScore = 0;
+      } else if (computerScore === 5) {
+        result.innerText = `The first to score 5 points is Computer: ${computerScore} - User: ${userScore}. You Lose!`;
+        userScore = 0;
+        computerScore = 0;
+      } 
     }
   }
   playGame();
